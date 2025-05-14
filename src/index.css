@@ -1,0 +1,76 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  overflow: hidden;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+  background-color: #0e7625;
+  padding: 1rem;
+}
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button {
+  background-color: #33c8a0;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+button:hover {
+  border-color: #30bd98;
+}
+
+.card-container {
+  display: flex;
+}
+
+.card {
+  user-select: none;
+  /* cursor: pointer; */
+  /* position: absolute; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100px;
+  height: 130px;
+  padding: 10px;
+  margin: 5px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.card.red {
+  color: red;
+}
+.card.black {
+  color: black;
+}
+
+.card .suit {
+  font-size: 4rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.card .value {
+  text-align: left;
+  font-size: 30px;
+  font-weight: bold;
+}
