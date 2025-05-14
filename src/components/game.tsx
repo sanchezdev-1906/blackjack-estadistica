@@ -26,16 +26,16 @@ const Game: FC<Props> = ({ onGameRestart }) => {
   }, [deck]);
   useEffect(() => {
     if (!croupierPlayed) return;
-    if (playerPoints > 21 && croupierPoints > 21) {
-      setMessage("pierden ambos");
+    if (croupierPoints > 21) {
+      setMessage("gana jugador");
     } else if (playerPoints > 21) {
       setMessage("gana mesa");
-    } else if (croupierPoints > 21) {
-      setMessage("gana jugador");
+    } else if (playerPoints === croupierPoints) {
+      setMessage("empate");
     } else if (playerPoints < croupierPoints) {
-      setMessage("gano mesa");
+      setMessage("gana mesa");
     } else {
-      setMessage("gano jugador");
+      setMessage("gana jugador");
     }
   }, [croupierPlayed, croupierPoints, playerPoints]);
 
