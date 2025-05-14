@@ -1,16 +1,30 @@
 * {
   box-sizing: border-box;
 }
+
 body {
   margin: 0;
   overflow: hidden;
 }
 
 #root {
+  display: flex;
   width: 100vw;
   height: 100vh;
   background-color: #0e7625;
   padding: 1rem;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.game {
+  margin: 0 auto;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 :root {
@@ -33,32 +47,57 @@ button {
   cursor: pointer;
   font-size: 16px;
 }
+
 button:hover {
   border-color: #30bd98;
 }
 
 .card-container {
   display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .card {
   user-select: none;
   /* cursor: pointer; */
-  /* position: absolute; */
+  position: relative;
+  width: 100px;
+  height: 130px;
+  margin: 0 5px;
+  background-color: red;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  transform-style: preserve-3d;
+}
+
+.card .card-content {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 100px;
-  height: 130px;
+  height: 100%;
+  width: 100%;
   padding: 10px;
-  margin: 5px;
-  background-color: white;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  backface-visibility: hidden;
 }
+
+.card.rotate {
+
+  transform: rotateY(180deg);
+}
+
+
+.card.hand-player {
+  margin: 0 -25px;
+}
+
 .card.red {
   color: red;
 }
+
 .card.black {
   color: black;
 }
@@ -73,4 +112,41 @@ button:hover {
   text-align: left;
   font-size: 30px;
   font-weight: bold;
+}
+
+.tag-name {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.points {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: white;
+  background-color: #2da65f;
+  padding: 5px;
+  border-radius: 5px;
+  width: 35px;
+}
+
+.btn--folt {
+  background-color: #cd192e;
+}
+
+.player {
+  position: relative;
+  /* border: 2px solid black; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .5rem;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.player .buttons {
+  display: flex;
+  gap: 10px;
 }

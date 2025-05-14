@@ -61,13 +61,12 @@ const Game: FC<Props> = ({ onGameRestart }) => {
   };
 
   return (
-    <div>
+    <div className="game">
       {croupierPlayed && (
         <div className="modal">
           <button onClick={onGameRestart}>Reiniciar</button>
         </div>
       )}
-      <p>crupier</p>
       <Crupier
         playerFolded={playerFolded}
         setCrupierPoints={setCroupierPoints}
@@ -75,7 +74,6 @@ const Game: FC<Props> = ({ onGameRestart }) => {
         onCrupierPlay={handleCroupierPlay}
         initial={initialCards.crupier}
       />
-      <p>player</p>
       <Player
         onFold={handleFold}
         setPlayerPoints={setPlayerPoints}

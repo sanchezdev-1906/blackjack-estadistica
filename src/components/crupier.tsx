@@ -68,7 +68,9 @@ const Player: FC<Props> = ({
     calculatePoints();
   }, [calculatePoints]);
   return (
-    <div>
+    <div className="player">
+      <span className="tag-name">Crupier</span>
+      <span className="points">10</span>
       <div className="card-container">
         {deck.map((card, index) => (
           <Card value={card} key={index} />

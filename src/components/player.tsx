@@ -44,9 +44,28 @@ const Player: FC<Props> = ({ getCard, initial, onFold, setPlayerPoints }) => {
     onFold();
   };
   return (
-    <div>
+    <div className="player">
+      <div className="card-container">
+        {deck.map((card, index) => {
+          const center = (deck.length - 1) / 2;
+          const distanceToCenter = Math.abs(index - center);
+          const maxDistance = center;
+          const weight = 1 - distanceToCenter / maxDistance; // 1 en el centro, 0 en los bordes
+
+          return (
+            <Card
+              value={card}
+              key={index}
+              handPlayer={true}
+              index={weight} // pasa el valor al componente si lo necesitas
+            />
+          );
+        })}
+      </div>
+      <span className="points">{points}</span>
+      <span className="tag-name">Player</span>
       {!folded && (
-        <>
+        <div className="buttons">
           <button
             onClick={() => {
               const card = getCard();
@@ -57,15 +76,9 @@ const Player: FC<Props> = ({ getCard, initial, onFold, setPlayerPoints }) => {
           >
             Pedir
           </button>
-          <button onClick={handleFold}>fold</button>
-        </>
+          <button className="btn--folt" onClick={handleFold}>Parar</button>
+        </div>
       )}
-      <div className="card-container">
-        {deck.map((card, index) => (
-          <Card value={card} key={index} />
-        ))}
-      </div>
-      <div>puntos:{points}</div>
     </div>
   );
 };
