@@ -37,8 +37,9 @@ const Player: FC<Props> = ({ getCard, initial, onFold, setPlayerPoints }) => {
     setPlayerPoints(points);
     if (points >= 21) {
       setFolded(true);
+      onFold();
     }
-  }, [deck, setPlayerPoints]);
+  }, [deck, setPlayerPoints, onFold]);
   const handleFold = () => {
     setFolded(true);
     onFold();
@@ -47,17 +48,24 @@ const Player: FC<Props> = ({ getCard, initial, onFold, setPlayerPoints }) => {
     <div className="player">
       <div className="card-container">
         {deck.map((card, index) => {
+          // Distancia de translacion
           const center = (deck.length - 1) / 2;
           const distanceToCenter = Math.abs(index - center);
           const maxDistance = center;
           const weight = 1 - distanceToCenter / maxDistance; // 1 en el centro, 0 en los bordes
+
+          // Angulo de rotacion
+          const distanceFromCenter = index - center;
+          const maxDistanceR = center === 0 ? 1 : center; // evita división por cero
+          const indexRotate = distanceFromCenter / maxDistanceR; // -1 a 1
 
           return (
             <Card
               value={card}
               key={index}
               handPlayer={true}
-              index={weight} // pasa el valor al componente si lo necesitas
+              indexTranslate={weight}
+              indexRotate={indexRotate}
             />
           );
         })}
@@ -76,7 +84,9 @@ const Player: FC<Props> = ({ getCard, initial, onFold, setPlayerPoints }) => {
           >
             Pedir
           </button>
-          <button className="btn--folt" onClick={handleFold}>Parar</button>
+          <button className="btn--folt" onClick={handleFold}>
+            Parar
+          </button>
         </div>
       )}
     </div>

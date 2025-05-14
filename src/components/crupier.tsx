@@ -18,10 +18,12 @@ const Player: FC<Props> = ({
   const [deck, setDeck] = useState<string[]>(initial);
   const [croupierPlayed, setCroupierPlayed] = useState(false);
   const [points, setPoints] = useState(0);
+  const [cardsRevealed, setCardsRevealed] = useState(1);
   useEffect(() => {
     setDeck(initial);
   }, [initial]);
   useEffect(() => {
+    setCardsRevealed(deck.length);
     if (!playerFolded || croupierPlayed) return;
     if (points >= 17) {
       onCrupierPlay();
@@ -70,13 +72,16 @@ const Player: FC<Props> = ({
   return (
     <div className="player">
       <span className="tag-name">Crupier</span>
-      <span className="points">10</span>
+      {playerFolded && <span className="points">{points}</span>}
       <div className="card-container">
         {deck.map((card, index) => (
-          <Card value={card} key={index} />
+          <Card
+            value={card}
+            key={index}
+            hidden={index + (playerFolded ? 0 : 1) < cardsRevealed}
+          />
         ))}
       </div>
-      <p>puntos:{points}</p>
     </div>
   );
 };

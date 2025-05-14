@@ -1,31 +1,37 @@
-import { useState, type FC } from "react";
+import { type FC } from "react";
 
 interface Props {
   value: string;
+  hidden?: boolean;
   handPlayer?: boolean;
-  index: number;
+  indexTranslate?: number;
+  indexRotate?: number;
 }
-const Card: FC<Props> = ({ value, handPlayer, index }) => {
+const Card: FC<Props> = ({
+  value,
+  handPlayer,
+  indexTranslate,
+  indexRotate,
+  hidden = false,
+}) => {
   const number = value.slice(0, -1);
   const symbol = value[value.length - 1];
-  const [volteado, setVoltadeo] = useState("");
   return (
     <div
       className={
         "card " +
-        volteado +
+        (hidden ? " rotate " : "") +
         (symbol == "♥" || symbol == "♦" ? "red" : "black") +
         (handPlayer ? " hand-player" : "")
       }
       style={{
-        transform: `translateY(${index * -40}px)`,
-      }}
-      onClick={() => {
-        if (volteado == "") {
-          setVoltadeo(" rotate ");
-        } else {
-          setVoltadeo("");
-        }
+        transform: `${
+          handPlayer
+            ? `translateY(${
+                indexTranslate ? indexTranslate * -30 : 0
+              }px) rotateZ(${indexRotate ? indexRotate * 15 : 0}deg)`
+            : ""
+        } `,
       }}
     >
       <div className="card-content">

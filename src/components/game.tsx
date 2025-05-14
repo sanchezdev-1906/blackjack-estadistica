@@ -12,6 +12,7 @@ const Game: FC<Props> = ({ onGameRestart }) => {
   const [playerPoints, setPlayerPoints] = useState(0);
   const [playerFolded, setPlayerFolded] = useState(false);
   const [croupierPlayed, setCroupierPlayed] = useState(false);
+  const [message, setMessage] = useState("");
   const [initialCards, setInitialCards] = useState<{
     player: string[];
     crupier: string[];
@@ -26,15 +27,15 @@ const Game: FC<Props> = ({ onGameRestart }) => {
   useEffect(() => {
     if (!croupierPlayed) return;
     if (playerPoints > 21 && croupierPoints > 21) {
-      console.log("pierden ambos");
+      setMessage("pierden ambos");
     } else if (playerPoints > 21) {
-      console.log("gana mesa");
+      setMessage("gana mesa");
     } else if (croupierPoints > 21) {
-      console.log("gana jugador");
+      setMessage("gana jugador");
     } else if (playerPoints < croupierPoints) {
-      console.log("gano mesa");
+      setMessage("gano mesa");
     } else {
-      console.log("gano jugador");
+      setMessage("gano jugador");
     }
   }, [croupierPlayed, croupierPoints, playerPoints]);
 
@@ -62,11 +63,6 @@ const Game: FC<Props> = ({ onGameRestart }) => {
 
   return (
     <div className="game">
-      {croupierPlayed && (
-        <div className="modal">
-          <button onClick={onGameRestart}>Reiniciar</button>
-        </div>
-      )}
       <Crupier
         playerFolded={playerFolded}
         setCrupierPoints={setCroupierPoints}
@@ -74,6 +70,13 @@ const Game: FC<Props> = ({ onGameRestart }) => {
         onCrupierPlay={handleCroupierPlay}
         initial={initialCards.crupier}
       />
+      {croupierPlayed && (
+        <div className="modal">
+          <p>{message}</p>
+
+          <button onClick={onGameRestart}>Reiniciar</button>
+        </div>
+      )}
       <Player
         onFold={handleFold}
         setPlayerPoints={setPlayerPoints}
