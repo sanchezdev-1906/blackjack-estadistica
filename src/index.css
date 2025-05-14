@@ -10,7 +10,7 @@ body {
 #root {
   display: flex;
   width: 100vw;
-  height: 100vh;
+  height: 100svh;
   background-color: #0e7625;
   padding: 1rem;
   text-align: center;
