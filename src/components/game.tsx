@@ -34,13 +34,11 @@ const Game: FC<Props> = ({ onGameRestart }) => {
   }, []);
 
   return (
-    <div>
-      <p>crupier</p>
+    <div className="game">
       <Crupier getCard={getCard} initial={initialCards.crupier} />
-      <p>player</p>
       <Player
-        onFold={() => {}}
-        setPlayerPoints={() => {}}
+        onFold={() => { }}
+        setPlayerPoints={() => { }}
         getCard={getCard}
         initial={initialCards.player}
       />
