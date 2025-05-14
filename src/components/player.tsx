@@ -35,6 +35,9 @@ const Player: FC<Props> = ({ getCard, initial, onFold, setPlayerPoints }) => {
     }
     setPoints(points);
     setPlayerPoints(points);
+    if (points >= 21) {
+      setFolded(true);
+    }
   }, [deck, setPlayerPoints]);
   const handleFold = () => {
     setFolded(true);
