@@ -5,6 +5,12 @@ function App() {
   const [gameStarted, setGameStarted] = useState(false);
   const onGameRestart = () => {
     setGameStarted(false);
+    const id = setTimeout(() => {
+      setGameStarted(true);
+    }, 1);
+    return () => {
+      clearTimeout(id);
+    };
   };
   return (
     <>

@@ -4,7 +4,8 @@ interface Props {
   value: string;
 }
 const Card: FC<Props> = ({ value }) => {
-  const [number, symbol] = [...value];
+  const number = value.slice(0, -1);
+  const symbol = value[value.length - 1];
   return (
     <div
       className={"card " + (symbol == "♥" || symbol == "♦" ? "red" : "black")}
