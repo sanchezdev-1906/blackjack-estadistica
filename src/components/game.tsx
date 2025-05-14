@@ -26,7 +26,9 @@ const Game: FC<Props> = ({ onGameRestart }) => {
   }, [deck]);
   useEffect(() => {
     if (!croupierPlayed) return;
-    if (croupierPoints > 21) {
+    if (croupierPoints > 21 && playerPoints > 21) {
+      setMessage("empate");
+    } else if (croupierPoints > 21) {
       setMessage("gana jugador");
     } else if (playerPoints > 21) {
       setMessage("gana mesa");
